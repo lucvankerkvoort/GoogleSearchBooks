@@ -3,12 +3,8 @@ import API from "../../controller";
 import Card from "../Card";
 
 class Result extends React.Component {
-  state = {
-    books: this.props
-  };
   saveBook = bookData => {
     API.pushBooks(bookData).then(result => console.log(result));
-    window.location.reload();
   };
 
   deleteBook = bookId => {
@@ -17,7 +13,7 @@ class Result extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log("this.props", this.props);
     let title = "";
     if (this.props.page === "search") {
       title = "Search Results";
@@ -28,7 +24,7 @@ class Result extends React.Component {
       <div className="container border">
         <h4>{title}</h4>
         <div className="container border">
-          {this.state.books.map((book, i) => (
+          {this.props.books.map((book, i) => (
             <Card
               key={i}
               id={book._id}
